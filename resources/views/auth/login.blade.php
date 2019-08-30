@@ -125,11 +125,11 @@
 											</label>
                                     </div>
                                     <div class="col kt-align-right">
-                                        <a href="{{ route('password.request') }}" id="kt_login_forgot" class="kt-login__link">Forget Password ?</a>
+                                        <a href="{{ route('password.request') }}" class="kt-login__link">Forget Password ?</a>
                                     </div>
                                 </div>
                                 <div class="kt-login__actions">
-                                    <button type="submit" id="kt_login_signin_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
+                                    <button type="submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
                                 </div>
                             </form>
                         </div>
@@ -138,18 +138,19 @@
                                 <h3 class="kt-login__title">Sign Up</h3>
                                 <div class="kt-login__desc">Enter your details to create your account:</div>
                             </div>
-                            <form class="kt-form" action="">
+                            <form class="kt-form" method="POST" action="{{ route('register') }}">
+                                  @csrf
                                 <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Fullname" name="fullname">
+                                    <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 </div>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+                                    <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 </div>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" placeholder="Password" name="password">
+                                    <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 </div>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" placeholder="Confirm Password" name="rpassword">
+                                    <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                                 <div class="row kt-login__extra">
                                     <div class="col kt-align-left">
@@ -161,7 +162,7 @@
                                     </div>
                                 </div>
                                 <div class="kt-login__actions">
-                                    <button id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
                                     <button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
                                 </div>
                             </form>

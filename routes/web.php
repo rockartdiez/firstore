@@ -32,10 +32,10 @@ Route::group(['middleware'=>'revalidate'], function(){
             Route::get('/', 'DashboardController@index')->name('admin');
 
             Route::prefix('masterdata')->group(function(){
-                Route::prefix('product')->group(function(){
-                    Route::get('/', 'ProductController@index')->name('product.index');
-                    Route::get('{action}/{id?}', 'ProductController@showForm')->where(['action'=>'new|edit', 'id'=>'[0-9]+'])->name('product.showForm');
-                    Route::post('{action}', 'ProductController@action')->where(['action'=>'save|delete'])->name('product.action');
+                Route::prefix('item')->group(function(){
+                    Route::get('/', 'ItemController@index')->name('item.index');
+                    Route::get('{action}/{id?}', 'ItemController@showForm')->where(['action'=>'new|edit', 'id'=>'[0-9]+'])->name('item.showForm');
+                    Route::post('{action}', 'ItemController@action')->where(['action'=>'save|delete'])->name('item.action');
                 });
             });
 
